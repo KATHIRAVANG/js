@@ -2,23 +2,20 @@
 
 <head>
     <script type="text/javascript">
-        console.log("head loaded");
 
-        var app = {};
-        app.show = function () {
-            document.writeln("<h1> Hello From Head Section </h1>");
-        }
 
     </script>
 
 </head>
 
 <body>
+    <button id="btn1">Click</button>
+
+    <script src="js/app.js"></script>
+
+
     <script>
-            console.log("body loaded");
-            app.show();
+        app.init();
     </script>
-    <input type="button" value="Click" onclick="javascript:alert(' Button Clicked')"/>
-</body>
 
 </html>
