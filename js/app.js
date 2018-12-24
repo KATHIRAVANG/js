@@ -17,9 +17,13 @@ app.printAllObject = function () {
 
     var obj = window;
 
-    do Object.getOwnPropertyNames(obj).forEach(function (name) {
+    do Object.getOwnPropertyNames(obj).forEach(
+        
+        function (name) {
         console.log(name);
-    });
+    }
+    
+    );
     while (obj = Object.getPrototypeOf(obj));
 }
 
