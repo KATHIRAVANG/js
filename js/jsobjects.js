@@ -146,7 +146,7 @@ let authorDataService = { getAuthors: function () { console.log("Calling authorD
 
 let bookDataService = { getBooks: function () { console.log("Book Data Service") } };
 
-let userDataService = { getUsers: functionstarted () { console.log("Calling userDataService") } };
+let userDataService = { getUsers: function () { console.log("Calling userDataService") } };
 
 let dataService = Object.assign({},
     authorDataService,
