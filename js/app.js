@@ -1,30 +1,19 @@
-var app = {};
+var numSquares = 6;
+var colors = [];
+var pickedColor;
+var squares = document.querySelectorAll(".square");
+var resetButton = document.querySelector("#reset");
+var modeButtons = document.querySelectorAll(".mode");
 
-app.showMessage = function () {
+var colors = [
+    "rgb(255, 0, 0)",
+    "rgb(255, 0, 255)",
+    "rgb(255, 225, 0)",
+    "rgb(255, 0, 255)",
+    "rgb(0, 255, 255)",
+    "rgb(0, 255, 0)"
+];
 
-    console.log("Hello World on click");
-};
-
-app.init = function () {
-
-    app.element = document.getElementById("btn1");
-
-    app.element.onclick = app.printAllObject;
-
-};
-
-app.printAllObject = function () {
-
-    var obj = window;
-
-    do Object.getOwnPropertyNames(obj).forEach(function (name) {
-        console.log(name);
-    });
-    while (obj = Object.getPrototypeOf(obj));
-}
-
-app.oldwayPrintAllObject = function () {
-    for (var key in window) {
-        console.log(key);
-    }
+for (i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
 }
