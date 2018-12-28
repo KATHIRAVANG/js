@@ -1,0 +1,21 @@
+
+// npm adduser
+// npm login
+// npm publish (  fail for name with @name/pkg)
+//npm publish --access=public
+//npm will send an email once published
+
+//For Clients
+//https://github.com/new - create Repo
+// npm install @kathirgovind/postmanframework
+//const framework = require("@kathirgovind/postmanframework");
+
+//framework.dosomething("args");
+ 
+
+//npm version major
+//npm publish
+
+//https://www.npmjs.com/package/@kathirgovind/postmanframework
+
+//verify the package in https://packagephobia.now.sh/result?p=%40kathirgovind%2Fpostmanframework
