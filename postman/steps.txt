@@ -1,12 +1,32 @@
-
+mkdir framework
+cd framework
+npm init ( packagename,version,depedencies,script )
+package.json
+// Create account in npmjs.org/signup
+//Confirm the email
+remember username/password/email
 // npm adduser
 // npm login
-// npm publish (  fail for name with @name/pkg)
+// npm publish (  fail for name with @name/packagename) //package name should be unique
 //npm publish --access=public
-//npm will send an email once published
+//npm will send an email once published ( you will get notified once published )
 
-//For Clients
+updating version ( in case of framework changed)
+npm version major/minor/patch
+npm publish
+
+
+//For Clients create document in github with Readme to install
 //https://github.com/new - create Repo
+npm install --global @name/package
+npm install --save-dev @name/package
+
+
+Client/ Developer will install the framework using below command
+
+npm install --global @name/package
+npm install --save-dev @name/package
+
 // npm install @kathirgovind/postmanframework
 //const framework = require("@kathirgovind/postmanframework");
 
@@ -16,6 +36,7 @@
 //npm version major
 //npm publish
 
+//verify the package
 //https://www.npmjs.com/package/@kathirgovind/postmanframework
 
 //verify the package in https://packagephobia.now.sh/result?p=%40kathirgovind%2Fpostmanframework
