@@ -1,0 +1,31 @@
+1) Install Postman
+2) from command prompt install below
+3) npm install -g http-server
+4) mkdir postman
+5) cd postman
+6) npm init
+7) replace package.json content with below content
+{
+   "name": "postman",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+   "test": "node src/testindex.js",
+   "combineschema": "json-concat src/jsonschema/c_schema.json src/jsonschema/y_schema.json public.json",
+   "gs": "node src/index.js",
+   "serveschema": "http-server"
+   },
+   "author": "kathir",
+   "license": "ISC",
+   "dependencies": {},
+   "devDependencies": {
+   "json-concat": "0.0.1",
+   "json-schema-generator": "².0.6",
+   "newman": "4.2.2",
+   "@types/newman": "³.10.0",
+   "newman-reporter-html": "1.0.2"
+   }
+  }
+  8) npm install ( this will install dependencies)
+  
