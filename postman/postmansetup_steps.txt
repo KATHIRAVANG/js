@@ -48,4 +48,98 @@ Now if you go to http://localhost:3000/posts/1, you'll get
 
 10 ) json-schema-generator http://localhost:3000/posts --jsondir ./jsonsource -o ./jsonschema
 
+11) create a file schema.json with contents copied from jsonschema and have a key called "posts" like below
+
+{
+    "posts":{
+        "type": "array",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "title",
+            "author"
+          ],
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "author": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+}
+
+12) now run http-server
+13) In postman create a collection and request to load this schema.json and have Testscrip like below
+pm.globals.set("fullschema", pm.response.json());
+let fullschema = pm.globals.get("fullschema");
+console.log("fullschema = " +fullschema);
+14) In prescripts define this dynamic framework logic
+var exports = `
+function validateschema(testcasename,schemaname,responsedata)
+{
+ pm.test(testcasename, function() {
+ let fullschema = pm.globals.get("fullschema");
+ console.log("fullschema " , fullschema );
+ //let schema =getObjData (schema,schemaname);
+ let schema =fullschema[schemaname];
+ console.log("loaded schema " , schema );
+ if(schema == null)
+ {
+ throw new Error("TestCase "+ testcasename + " Failed. Passed "+schemaname +" not found.Please check in globals and schema is defined");
+ }
+ 
+ let valid = tv4.validate(responsedata, schema, true ); // checkRecursive and banUnknownProperties.
+ if (valid !== true) {
+ console.log("Validation errors: "+ tv4.error);
+ console.log(tv4.error.dataPath); 
+ throw new Error("TestCase "+ testcasename + " Failed. "+ tv4.error + " on path " +tv4.error.dataPath );
+ 
+ }
+ pm.expect(valid).to.be.true;
+ });
+}
+function getObjData(obj,key)
+{
+ return obj[key];
+ 
+}
+var L = function (msg){console.log(msg);};
+// Postman doesn't log the thrown errors well. Using this tells you the error msg
+function throwing (msg)
+{
+ msg = "Error in Collection Script: " + msg;
+ L(msg);
+ throw msg;
+}
+`;
+pm.globals.set("commonutil", exports);
+
+15) Now create another request to get the posts and have the Testscript as below
+
+//load the commonutil
+eval(globals.commonutil);
+// First, run the common tests
+//eval(globals.commonTests)();
+//const schema = pm.globals.get("userexistschema");
+let responsedata = pm.response.json();
+validateschema("VALIDATE schema GET POSTS","posts",responsedata);
+//tests["openamtoken is present " + responsedata.tokenId ] = responsedata.tokenId!=null;
+
+validateschema is the method exposed from globals. It got the framework logic . Change the arguments according to the response of API
+
+16) Now if you run the Test for GET POSTS it will validate and tell its valid or not
+
   
